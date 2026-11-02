@@ -14,6 +14,7 @@ Stage 1 (foundation). What exists today:
 | Indian delivery charges (`src/trading/costs.py`) | Working. Brokerage, STT, exchange, SEBI, stamp duty, DP, GST (Upstox rates, Nov 2026) |
 | Risk rules: 5% per stock, 50% invested, 10 positions, 2% daily loss stop, no short selling | Working, configurable via `RiskLimits` |
 | DeepSeek / GLM news classifier (`src/trading/ai.py`) | Written and unit-tested with mocks; not yet run against a live API |
+| Backtest vs Nifty buy-and-hold (`src/trading/backtest.py`) | Working. See [`docs/backtest-on-ec2.md`](docs/backtest-on-ec2.md) |
 | Unit tests + GitHub Actions CI | Working |
 | Market data, news feeds, database, Telegram, EC2 deployment | Not started |
 
@@ -45,6 +46,10 @@ src/trading/
   costs.py   Indian delivery-trade charges
   ai.py      optional DeepSeek/GLM news classifier (advisory only, never trades)
   cli.py     small demo
+  data.py    loads daily price CSVs
+  backtest.py  strategy vs buy-and-hold backtest
+scripts/
+  fetch_prices.py  downloads NSE daily prices (Yahoo Finance)
 tests/       unit tests
 docs/        implementation plan and roadmap
 ```
