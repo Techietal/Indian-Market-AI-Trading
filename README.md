@@ -10,9 +10,10 @@ Stage 1 (foundation). What exists today:
 
 | Component | State |
 |---|---|
-| Simulated broker (`src/trading/paper.py`) | Working, synthetic prices only |
-| Risk rules: 5% per stock, 50% total invested, 10 positions, no short selling | Working, hard-coded |
-| DeepSeek / GLM news classifier (`src/trading/ai.py`) | Written, not yet tested against a live API |
+| Simulated broker (`src/trading/paper.py`) | Working. Fills at the latest market price plus slippage; synthetic prices until a feed is connected |
+| Indian delivery charges (`src/trading/costs.py`) | Working. Brokerage, STT, exchange, SEBI, stamp duty, DP, GST (Upstox rates, Nov 2026) |
+| Risk rules: 5% per stock, 50% invested, 10 positions, 2% daily loss stop, no short selling | Working, configurable via `RiskLimits` |
+| DeepSeek / GLM news classifier (`src/trading/ai.py`) | Written and unit-tested with mocks; not yet run against a live API |
 | Unit tests + GitHub Actions CI | Working |
 | Market data, news feeds, database, Telegram, EC2 deployment | Not started |
 
@@ -41,6 +42,7 @@ Never commit or paste into issues/logs: API keys, broker credentials or tokens, 
 ```
 src/trading/
   paper.py   simulated broker + risk checks
+  costs.py   Indian delivery-trade charges
   ai.py      optional DeepSeek/GLM news classifier (advisory only, never trades)
   cli.py     small demo
 tests/       unit tests
