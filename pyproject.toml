@@ -10,6 +10,7 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10"]
+research = ["yfinance>=0.2.40"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
